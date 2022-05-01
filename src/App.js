@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import FlatListComponente from './exercicesTemp/FlatListComponente'
+import Exercicios from './exercicios'
 export default function App() {
 
 
 
   return (
     <View style={styles.container}>
-      <FlatListComponente />
-      {/* <Text>Open up App.js to start working on your app!</Text> */}
+      <Exercicios />
     </View>
   );
 }
