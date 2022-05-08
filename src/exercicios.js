@@ -6,6 +6,7 @@ import Insta from './exercicesTemp/insta';
 import SliderComponente from './exercicesTemp/Slider';
 import Modal  from './exercicesTemp/Modal';
 import HTTPSS from './exercicesTemp/Http';
+import Animado from './exercicesTemp/Animacao';
 import AsyncStorage from './exercicesTemp/AsyncStorage';
 export default function Exercicios() {
 
@@ -17,7 +18,8 @@ export default function Exercicios() {
             {/* <Insta></Insta> */}
             {/* <AsyncStorage/> */}
             {/* <Modal /> */}
-            <HTTPSS />
+            {/* <HTTPSS /> */}
+            <Animado />
         </View>
     );
 }
