@@ -5,7 +5,7 @@ import PickerComponente from './exercicesTemp/Picker';
 import Insta from './exercicesTemp/insta';
 import SliderComponente from './exercicesTemp/Slider';
 import Modal  from './exercicesTemp/Modal';
-import Http from './exercicesTemp/Http';
+import HTTPSS from './exercicesTemp/Http';
 import AsyncStorage from './exercicesTemp/AsyncStorage';
 export default function Exercicios() {
 
@@ -16,9 +16,8 @@ export default function Exercicios() {
             {/* <SliderComponente /> */}
             {/* <Insta></Insta> */}
             {/* <AsyncStorage/> */}
-            <Modal />
-            {/* <Http /> */}
-            {/* <Text>Kfaçkfaspnfka</Text> */}
+            {/* <Modal /> */}
+            <HTTPSS />
         </View>
     );
 }
