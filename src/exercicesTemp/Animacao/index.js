@@ -16,34 +16,49 @@ export default function Animado() {
 
   function expandOnOff(param){
     if(param){
-      Animated.timing(
-        widthAnimated , {
-          toValue:250,
-          duration:2000
-        } ).start()
-      Animated.timing(heightAnimated,{
-        toValue: 200,
-        duration: 2000
-      }
-      ).start()
-      Animated.timing(colorAnimated,{
-        toValue:4323,
-        duration: 2000
-      }
-      ).start()
+      Animated.sequence([
+
+        Animated.timing(
+          widthAnimated , {
+            toValue:250,
+            duration:2000
+          } ) ,
+          Animated.timing(heightAnimated,{
+            toValue: 200,
+            duration: 2000
+          }
+          )
+        ]).start()
+      Animated.parallel([
+
+        Animated.timing(
+          widthAnimated , {
+            toValue:200,
+            duration:2000
+          } ) ,
+          Animated.timing(heightAnimated,{
+            toValue: 150,
+            duration: 2000
+          }
+          )
+        ]).start()
+
       return
     }
-    Animated.timing(
-      widthAnimated , {
-        toValue:100,
-        duration:2000
-      } ).start()
-    Animated.timing(heightAnimated,{
-      toValue: 100,
-      duration: 2000
-    }
-    ).start()
+    Animated.sequence([
 
+      Animated.timing(
+        widthAnimated , {
+          toValue:100,
+          duration:2000
+        } ),
+        Animated.timing(heightAnimated,{
+          toValue: 100,
+          duration: 2000
+        }
+        )
+      ]).start()
+        
   }
 
   return (
@@ -52,7 +67,6 @@ export default function Animado() {
    <Animated.View style={{
      width:widthAnimated,
      height:heightAnimated,
-     backgroundColor:`#${colorAnimated}`,
      justifyContent:'center',
      backgroundColor:'#4169E1',
    }}>

@@ -8,6 +8,7 @@ import Modal  from './exercicesTemp/Modal';
 import HTTPSS from './exercicesTemp/Http';
 import Animado from './exercicesTemp/Animacao';
 import AsyncStorage from './exercicesTemp/AsyncStorage';
+import Cep from './exercicesTemp/Cep';
 export default function Exercicios() {
 
     return (
@@ -19,7 +20,8 @@ export default function Exercicios() {
             {/* <AsyncStorage/> */}
             {/* <Modal /> */}
             {/* <HTTPSS /> */}
-            <Animado />
+            {/* <Animado /> */}
+            <Cep/>
         </View>
     );
 }
