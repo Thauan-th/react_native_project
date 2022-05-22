@@ -1,14 +1,13 @@
 import React from 'react';
 import { View , Animated , Text } from 'react-native';
 import { Button } from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Animado() {
   const [widthAnimated,setWidthAnimated]= React.useState(new Animated.Value(100))
   const [heightAnimated,setHeightAnimated]= React.useState(new Animated.Value(100))
   const [colorAnimated,setColorAnimated]= React.useState(new Animated.Value(341))
   const [expand , setExpand] = React.useState(false)
-
 
   React.useEffect(()=>{
     expandOnOff(expand)
@@ -72,6 +71,7 @@ export default function Animado() {
    }}>
     <Button onPress={()=>setExpand(prev=>!prev)}  title='clique' style={{color:'#ffff' , fontSize:22 , textAlign:'center'}}></Button>
    </Animated.View>
+    <Icon name='arrow-down' size={30} color='#54a300' style={{paddingLeft:90}}/>
    </View>
   );
 }
