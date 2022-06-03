@@ -2,7 +2,7 @@ import React from 'react';
 
 //deps
 import { ScrollView, StyleSheet, View} from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 //components
 import { fakeData } from './src/components/fakeData';
@@ -41,6 +41,7 @@ return (
         />
       )}
     </MapView>
+
 
     <ScrollView style={styles.box} horizontal={true} showsHorizontalScrollIndicatior={false}>
       <View style={styles.localView }>
