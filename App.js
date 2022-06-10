@@ -7,8 +7,14 @@ import MapView, { Marker } from 'react-native-maps';
 //components
 import { fakeData } from './src/components/fakeData';
 import  CityButton  from './src/components/CityButton';
-
+const pinImages ={
+  0: require('./src/assets/carro.png'),
+  1: require('./src/assets/carro_down.png'),
+  2: require('./src/assets/carro_left.png'),
+  3: require('./src/assets/carro_right.png'),
+}
 export default function App() {
+
   const [state, setState] = React.useState({
     region: {
       latitude: -20.4695225,
@@ -18,9 +24,20 @@ export default function App() {
     },
     destLocation: null
 })
-const {region} = state;
+  const [marks,setMarks] = React.useState([])
+  const {region} = state;
 
-
+  function addMarker(e){
+    let aux = []
+    aux.push({
+      key:marks.length,
+      coords:{
+        latitude:e.nativeEvent.coordinate.latitude,
+        longitude:e.nativeEvent.coordinate.longitude,
+      }
+    })
+   setMarks(aux.concat(marks))
+  }
 
 return (
   <View style={styles.container}>
@@ -30,7 +47,21 @@ return (
       region={region}
       loadingEnabled
       showsUserLocation
-    >
+      onPress={e=>addMarker(e)}
+    > 
+      {marks.length>0 && marks.map((marker)=>{
+        return(
+          <Marker 
+            image={pinImages[marker.key] || pinImages[0]}
+            key={marker.key}
+            coordinate={marker.coords}
+            title="Marker"
+            description='Marcador usado para mapas'
+        />
+        )
+      })
+      
+      }
       {state.destLocation && (
         <MapViewDirections 
           origin={state.region}
