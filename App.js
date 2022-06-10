@@ -1,11 +1,15 @@
+import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import RoutesAPP from './src/store/routes'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Codando mobile
-      </Text>
+      <NavigationContainer>
+          <RoutesAPP />
+      </NavigationContainer>
       <StatusBar style="auto" />
     </View>
   );
