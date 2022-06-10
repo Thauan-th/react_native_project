@@ -1,8 +1,8 @@
 import React from 'react';
 
 //deps
-import { ScrollView, StyleSheet, View} from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { ScrollView, StyleSheet, View , Text} from 'react-native';
+import MapView, { Marker , Callout} from 'react-native-maps';
 
 //components
 import { fakeData } from './src/components/fakeData';
@@ -15,17 +15,34 @@ const pinImages ={
 }
 export default function App() {
 
+  
   const [state, setState] = React.useState({
-    region: {
-      latitude: -20.4695225,
-      longitude: -54.6016767,
-      latitudeDelta:0.0015,
-      longitudeDelta:0.0121
-    },
+    region: {},
     destLocation: null
 })
   const [marks,setMarks] = React.useState([])
   const {region} = state;
+
+  React.useEffect(()=>{
+    getLocation();
+  })
+  async function getLocation(){
+    const {status} = await Permissions.askAsync(Permissions.LOCATION);
+    if(status !== 'granted'){
+      alert('Permissão negada');
+    }
+    const location = await Location.getCurrentPositionAsync({});
+    const {latitude,longitude} = location.coords;
+    setState({
+      region: {
+        latitude,
+        longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
+    })  
+  }
+
 
   function addMarker(e){
     let aux = []
@@ -45,8 +62,7 @@ return (
       ref={(map)=>{map = map}}
       style={styles.mapa}
       region={region}
-      loadingEnabled
-      showsUserLocation
+      loadingEnabled={true}
       onPress={e=>addMarker(e)}
     > 
       {marks.length>0 && marks.map((marker)=>{
@@ -57,7 +73,13 @@ return (
             coordinate={marker.coords}
             title="Marker"
             description='Marcador usado para mapas'
-        />
+        >
+          <Callout>
+            <View style={styles.callout}>
+              <Text>{marker.key}</Text>
+            </View>
+          </Callout>
+        </Marker>
         )
       })
       
@@ -78,7 +100,7 @@ return (
       <View style={styles.localView }>
         {
           fakeData.map(city =>{
-            return <CityButton key={city.id} city={city} setState={setState}/>
+            return <CityButton key={city.id} city={city} setState={setState} setMarkes={setMarks}/>
           })
         }
       </View>
@@ -110,5 +132,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5
+  },
+  callout:{
+    width: 100,
+    height: 100,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

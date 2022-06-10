@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-export default ({setState,city})=>{
+export default ({setState,city , setMarkes})=>{
   const changeCity = (lat,long)=>{
     setState({
       region:{
@@ -13,7 +13,7 @@ export default ({setState,city})=>{
     })
   }
   return(
-    <TouchableOpacity style={styles.localBtn} onPress={() => { changeCity(city.lat,city.long) }}>
+    <TouchableOpacity style={styles.localBtn} onPress={() => { changeCity(city.lat,city.long); setMarkes(0) }}>
       <Text style={styles.localText}>{city.name}</Text>
     </TouchableOpacity>
   )
