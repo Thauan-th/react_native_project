@@ -7,6 +7,7 @@ import MapView, { Marker , Callout} from 'react-native-maps';
 //components
 import { fakeData } from './src/components/fakeData';
 import  CityButton  from './src/components/CityButton';
+
 const pinImages ={
   0: require('./src/assets/carro.png'),
   1: require('./src/assets/carro_down.png'),
@@ -15,10 +16,8 @@ const pinImages ={
 }
 export default function App() {
 
-  
   const [state, setState] = React.useState({
     region: {},
-    destLocation: null
 })
   const [marks,setMarks] = React.useState([])
   const {region} = state;
@@ -84,15 +83,6 @@ return (
       })
       
       }
-      {state.destLocation && (
-        <MapViewDirections 
-          origin={state.region}
-          destination={state.destLocation}
-          apikey="AIzaSyBoJq8KXM6rA23iqX1kSKJaHFwVok5ZSLQ"
-          strokeWidth={5}
-          strokeColor="#000"
-        />
-      )}
     </MapView>
 
 

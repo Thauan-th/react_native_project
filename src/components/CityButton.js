@@ -1,4 +1,6 @@
 import React from 'react';
+
+//native 
 import { StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 export default ({setState,city , setMarkes})=>{
@@ -22,6 +24,7 @@ export default ({setState,city , setMarkes})=>{
 
 const styles = StyleSheet.create({
   localBtn: { 
+    width: '100%',
     backgroundColor: '#FF0000',
     height: 40,
     padding: 7,
