@@ -9,11 +9,10 @@ const opened_styled = {
   justifyContent:'center'
 }
 
-export const Lb = styled.Text(({color})=>({
-  fontWeight:'bold',
-  fontSize:p.fontSize,
-  color
-}))
+const exploded_styled = {
+  backgroundColor:'red',
+  borderColor:'red',
+}
 
 const regular_style = {
   backgroundColor:'#999',
@@ -23,10 +22,16 @@ const regular_style = {
   borderBottomColor:'#333'
 }
 
-export const Field = styled.View(({regular,opened}) =>({
+export const Lb = styled.Text(({color})=>({
+  fontWeight:'bold',
+  fontSize:p.fontSize, 
+}))
+
+export const Field = styled.View(({regular,opened,exploded}) =>({
   height: p.blockSize ,
   width: p.blockSize ,
   borderWidth: p.borderSize,
   ...(regular && regular_style),
-  ...(opened && opened_styled)
+  ...(opened && opened_styled),
+  ...(exploded && exploded_styled)
 }));
