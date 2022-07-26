@@ -3,19 +3,22 @@ import { Text } from 'react-native'
 import {Field,Lb} from './styles'
 import NearMinesColor from './utils'
 import Mine from '../Mine/Mine'
+import Flag from '../Flag/Flag'
 
 export default ({
   mined,
   opened,
   nearMines,
-  exploded
+  exploded,
+  flagged
 }) => {
   
   const styled_class=['default']
 
   if (opened) styled_class.push('opened')
   if(exploded) styled_class.push('exploded')
-  if (styled_class.length==1) styled_class.push('regular')
+  if(flagged) styled_class.push('flagged','regular')
+  if (!opened && !exploded) styled_class.push('regular')
 
   let color = NearMinesColor(nearMines)
 
@@ -23,6 +26,7 @@ export default ({
     <Field opened={opened} nearMines={nearMines} regular={styled_class.at(-1)==='regular'} exploded={styled_class.at(-1)==='exploded'}>
       {!mined && opened && nearMines && <Lb color={color}>{nearMines}</Lb>}
       { mined && opened &&  <Mine/>}
+      {flagged && !opened && <Flag/>}
     </Field>
   )
 }

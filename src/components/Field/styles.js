@@ -25,6 +25,7 @@ const regular_style = {
 export const Lb = styled.Text(({color})=>({
   fontWeight:'bold',
   fontSize:p.fontSize, 
+  color
 }))
 
 export const Field = styled.View(({regular,opened,exploded}) =>({
