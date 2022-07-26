@@ -16,6 +16,8 @@ export default function App() {
       <Field opened={true} nearMines={1}/>
       <Field opened={true} nearMines={3}/>
       <Field opened={true} nearMines={6}/>
+      <Field opened={true} mined={true} nearMines={3}/>
+      <Field opened={true} mined={true} nearMines={3} exploded={true}/>
       <StatusBar style="auto" hidden={true}/>
     </MainContainer>
   );
