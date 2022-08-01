@@ -1,5 +1,7 @@
 import React from 'react'
 
+import App from './src'
+
 //expo
 import { StatusBar } from 'expo-status-bar';
 
@@ -13,13 +15,10 @@ import thunk from 'redux-thunk'
 import Reducers from './src/store'
 const store = createStore(Reducers ,applyMiddleware(thunk) )
 
-export default function App() {
+export default () => {
   return (
     <Provider store={store} >
-    <View style={styles.container}>
-      <Text>RN</Text>
-      <StatusBar style="auto" hidden={true} />
-    </View>
+    <App/>
     </Provider>
   );
 }
