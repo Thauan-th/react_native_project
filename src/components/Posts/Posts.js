@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native';
 
 import Author from '../Author';
 import Comments from '../Comments';
+import AddComment from '../AddComments/AddComment';
 
 export default function Posts({ image }) {
   const DeviceWidth = Dimensions.get('window').width
@@ -27,6 +28,7 @@ export default function Posts({ image }) {
       <Image source={image} DeviceWidth={DeviceWidth} />
       <Author email='thauan@gmail.com' nickname='TH' />
       <Comments comments={fake_comments} />
+      <AddComment />
     </Container>
   );
 }
