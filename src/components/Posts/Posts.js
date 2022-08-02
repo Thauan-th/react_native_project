@@ -7,27 +7,13 @@ import Author from '../Author';
 import Comments from '../Comments';
 import AddComment from '../AddComments/AddComment';
 
-export default function Posts({ image }) {
+export default ({ image , email , nickname,comments}) =>{
   const DeviceWidth = Dimensions.get('window').width
-  const fake_comments = [
-    {
-      nickname: "Teste",
-      comment: "Cool"
-    },
-    {
-      nickname: "Teste2",
-      comment: "Cool1"
-    },
-    {
-      nickname: "Teste3",
-      comment: "Cool2"
-    }
-  ]
   return (
     <Container>
       <Image source={image} DeviceWidth={DeviceWidth} />
-      <Author email='thauan@gmail.com' nickname='TH' />
-      <Comments comments={fake_comments} />
+      <Author email={email} nickname={nickname} />
+      <Comments comments={comments} />
       <AddComment />
     </Container>
   );
