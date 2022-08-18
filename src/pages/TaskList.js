@@ -113,7 +113,7 @@ export default ()=>{
   ]
   const [allTasks,setAllTasks] = React.useState(initial)
   const [showDoneTask,SetShowDoneTasks] =  React.useState(false)
-  const [tasksModal,setTasksModal] =  React.useState(true)
+  const [tasksModal,setTasksModal] =  React.useState(false)
 
   const today = moment().locale('pt-br').format("ddd,D [de] MMMM")
 
@@ -159,6 +159,14 @@ export default ()=>{
           renderItem={({item})=><Task  {...item} toggleTask={toggleTask} />}
         />
       </View>
+
+        <TouchableOpacity style={styles.addTask} onPress={()=>setTasksModal(true)}>
+          <Icon 
+            name='plus' 
+            size={20}
+            color='#fff'
+            />
+          </TouchableOpacity>
     </View>
   )
 }
@@ -192,5 +200,17 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end',
     marginTop:40,
     marginRight:20
+  },
+  addTask:{
+    position:'absolute',
+    right:30,
+    bottom:30,
+    width:70,
+    height:70,
+    borderRadius:35,
+    backgroundColor:'green',
+    justifyContent:"center",
+    alignItems:'center'
+
   }
 })
