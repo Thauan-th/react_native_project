@@ -10,6 +10,7 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 
 import Task from '../components/Task'
+import AddTasks from "./AddTasks";
 
 export default ()=>{
   const initial = [
@@ -112,6 +113,7 @@ export default ()=>{
   ]
   const [allTasks,setAllTasks] = React.useState(initial)
   const [showDoneTask,SetShowDoneTasks] =  React.useState(false)
+  const [tasksModal,setTasksModal] =  React.useState(true)
 
   const today = moment().locale('pt-br').format("ddd,D [de] MMMM")
 
@@ -131,8 +133,14 @@ export default ()=>{
   }
   const visibleTasks = showDoneTask ? allTasks.filter(item=>!item.doneAt ) : allTasks
 
+  const onSave = (task)=>{
+    allTasks.push(task)
+    setTasksModal(false)
+  }
+
   return (
     <View  style={styles.container}>
+      <AddTasks isVisible={tasksModal} onCancel={()=>setTasksModal(false)} onSave={onSave}/>
       <ImageBackground source={TodayImage} style={styles.background}>
         <View style={styles.iconBar}>
           <TouchableOpacity onPress={toggleFilter}>
