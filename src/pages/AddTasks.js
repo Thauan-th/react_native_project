@@ -1,9 +1,30 @@
 import React from "react";
-import {Modal,View,StyleSheet,TouchableWithoutFeedback,Text,TextInput,TouchableOpacity} from 'react-native'
-
+import {Modal,View,StyleSheet,TouchableWithoutFeedback,Text,TextInput,TouchableOpacity,Platform} from 'react-native'
+import DateTime from '@react-native-community/datetimepicker'
+import moment from "moment";
+import 'moment/locale/pt-br'
 
 export default ({onCancel,isVisible, onSave})=>{
   const [desc,setDesc] = React.useState('')
+  
+  const [date,setDate] =  React.useState(new Date().toString())
+  const [showDatePicker,setShowDatePicker] =  React.useState(Platform.OS == 'ios')
+
+  const getDateTimePicker = ()=>{
+    const datePicker = <DateTime value={new Date()} onChange={(_,d)=>{setDate(d);setShowDatePicker(false)}} mode='date'/>
+    if(!showDatePicker){
+      return(
+        <>
+        <TouchableOpacity>
+          <Text style={styles.button} onPress={()=>setShowDatePicker(true)}>Data</Text>
+        </TouchableOpacity>
+         {showDatePicker && <datePicker/>}
+        </>
+        )
+    }
+    return datePicker
+  }
+
   return (
     <Modal transparent={true} visible={isVisible} onRequestClose={onCancel} animationType='slide' >
       <TouchableWithoutFeedback onPress={onCancel}>
@@ -17,6 +38,8 @@ export default ({onCancel,isVisible, onSave})=>{
           value={desc}
           onChangeText={t=>setDesc(t)}
         />
+        { getDateTimePicker()}
+        <Text style={styles.datePicker}>{moment(date).format('ddd, D [de] MMMM [de] YYYY')}</Text>
         <View style={styles.buttons}> 
           <TouchableOpacity onPress={onCancel} >
             <Text style={styles.button} >   Cancel</Text>
@@ -25,7 +48,7 @@ export default ({onCancel,isVisible, onSave})=>{
             <Text style={styles.button} onPress={()=>onSave({
               id:Math.random(),
               desc,
-              estimateAt: new Date().toString()
+              estimateAt: date
             })}   >Save</Text>
           </TouchableOpacity>
         </View>
@@ -73,5 +96,8 @@ const styles = StyleSheet.create({
     margin:20,
     marginRight:30,
     color:'#B13B44'
+  },
+  datePicker:{
+    marginLeft:10
   }
-})
+})    

@@ -131,12 +131,17 @@ export default ()=>{
     })
     setAllTasks(tasks)
   }
-  const visibleTasks = showDoneTask ? allTasks.filter(item=>!item.doneAt ) : allTasks
-
+  
   const onSave = (task)=>{
     allTasks.push(task)
     setTasksModal(false)
   }
+  
+  const removeTask = (task) =>{
+    const removed  = allTasks.filter(item=> item.id !== task)
+    setAllTasks(removed)
+  }
+  const visibleTasks = showDoneTask ? allTasks.filter(item=>!item.doneAt ) : allTasks
 
   return (
     <View  style={styles.container}>
@@ -156,7 +161,7 @@ export default ()=>{
         <FlatList 
           data={visibleTasks}
           keyExtractor={item=>item.id}
-          renderItem={({item})=><Task  {...item} toggleTask={toggleTask} />}
+          renderItem={({item})=><Task  {...item} toggleTask={toggleTask} removeTask={removeTask} />}
         />
       </View>
 
