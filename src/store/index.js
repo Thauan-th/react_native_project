@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 export const AuthContext = React.createContext({})
 
 export default ({children})=>{
@@ -30,11 +30,10 @@ export default ({children})=>{
     
   }
   async function signIn({email,password}){
-    const toSend ={}
    const {data} = await api_client.post('/signin',{email,password})
         .catch(err=>console.error('Login errado'))
     if(data.token){
-      localStorage.setItem('token',data.token)
+      AsyncStorage.setItem('token',data.token)
       Navigate.navigate('Tasks')
     }
   }
