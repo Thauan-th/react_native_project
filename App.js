@@ -1,20 +1,16 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import TaskList from './src/pages/TaskList';
+import AuthContextProvider from './src/store';
+import Navigator from './src/Navigator';
+
 
 export default function App() {
   return (
-      <TaskList/>
+    <NavigationContainer>
+      <AuthContextProvider>
+        <Navigator />
+      </AuthContextProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
